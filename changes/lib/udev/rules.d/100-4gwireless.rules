@@ -1,2 +1,2 @@
-SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", KERNELS=="1-1", ACTION=="add", ATTRS{idVendor}=="13fe", ATTRS{idProduct}=="3100", RUN+="/data/caf/bin/setupwireless"
+SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", KERNELS=="1-1", ACTION=="add", ATTRS{idVendor}=="13fe", ATTRS{idProduct}=="3100", RUN+="/data/caf/bin/setup"
 
