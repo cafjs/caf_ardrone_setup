@@ -1,0 +1,21 @@
+# Your wlan name (should match /etc/wpa_supplicant.conf)
+ESSID='T-Mobile-Parrot1'
+
+#The gateway address of your wlan
+GATEWAY=192.168.0.1
+
+#The contents of /etc/resolv.conf
+DNS='nameserver 192.168.0.1'
+
+# Root directory for the application
+CAF_HOME=/data/caf/
+
+# Subdir in CAF_HOME containing the application
+CAF_APP_REPO_DIR=application
+
+# URL for the CA representing this device/app
+CAF_APP_URL=http://hellodrone.cafjs.com/iot/xxxx
+
+
+# Directory with optional config file (caf_daemon) to override defaults
+CAF_CONFIG_DIR=/data/video

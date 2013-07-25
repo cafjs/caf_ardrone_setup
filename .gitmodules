@@ -1,0 +1,3 @@
+[submodule "changes/data/caf/application"]
+	path = changes/data/caf/application
+	url = ../caf_hellodrone_cli
