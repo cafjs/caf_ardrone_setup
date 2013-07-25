@@ -10,12 +10,12 @@ NAME=${NAME:-caf_daemon}
 
 sleep 20
 /sbin/ifconfig ath0 0.0.0.0
-/sbin/iwconfig ath0 essid $ESSID && /bin/wpa_supplicant -B -Dwext -iath0 -c/etc/wpa_supplicant.conf
+/sbin/iwconfig ath0 essid ${ESSID} && /bin/wpa_supplicant -B -Dwext -iath0 -c/etc/wpa_supplicant.conf
 wait 10
 /sbin/udhcpc -i ath0
-/sbin/route add default gw $GATEWAY ath0
+/sbin/route add default gw ${GATEWAY} ath0
 /bin/rm -f /etc/resolv.conf
-echo $DNS > /etc/resolv.conf
+echo ${DNS} > /etc/resolv.conf
 killall udhcpd
 /bin/ntpclient -f /data/ntpdata -s -l -i 600 -g 10000 -h 0.US.pool.ntp.org > /data/ntp.log &
 /usr/sbin/gpsd -G /dev/ttyUSB0
@@ -38,8 +38,8 @@ echo "Starting up with URL " ${CAF_APP_URL}
 if [ -d ${CAF_APP_REPO_DIR} ]
 then
     cd ${CAF_APP_REPO_DIR}
-    command="/data/caf/bin/node --expose_gc ./start.js --url ${CAF_APP_URL}"
-    /data/caf/bin/mon  $command
+    command="/data/caf/bin/node --expose_gc ${CAF_HOME}/${CAF_APP_REPO_DIR}/start.js --url ${CAF_APP_URL}"
+    /data/caf/bin/mon  "${command}"
 else
     echo "Error: app not installed"
     exit 1
