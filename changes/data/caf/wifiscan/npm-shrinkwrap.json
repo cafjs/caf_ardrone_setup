@@ -1,9 +1,0 @@
-{
-  "dependencies": {
-    "carrier": {
-      "version": "0.1.10",
-      "from": "carrier@",
-      "resolved": "https://registry.npmjs.org/carrier/-/carrier-0.1.10.tgz"
-    }
-  }
-}
