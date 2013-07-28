@@ -22,7 +22,7 @@ wpa_passphrase $ESSID $WIFI_PASS > etc/wpa_supplicant.conf
 rm -fr /tmp/${CAF_APP_REPO_DIR}
 cp -r ${CAF_HOME_REL}/${CAF_APP_REPO_DIR} /tmp/
 cd /tmp/${CAF_APP_REPO_DIR}
-npm install
+npm install --link
 npm shrinkwrap
 cd /tmp
 #   note we use `h` option to follow links
