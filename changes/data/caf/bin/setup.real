@@ -17,10 +17,11 @@ wait 10
 /bin/rm -f /etc/resolv.conf
 echo ${DNS} > /etc/resolv.conf
 killall udhcpd
-/bin/ntpclient -f /data/ntpdata -s -l -i 600 -g 10000 -h 0.US.pool.ntp.org > /data/ntp.log &
+/bin/ntpclient -f /data/ntpdata -s -t -l -i 600 -g 10000 -h ${NTP_SERVER} > /data/ntp.log &
 /usr/sbin/gpsd -G /dev/ttyUSB0
 
-NOTDONE=1
+NOTDONE=${ENABLE_NETWORK_CHECK}
+
 while [ $NOTDONE -gt 0 ]; do
     if ping -c 1 -W 1 github.com > /dev/null ; then
         NOTDONE=0

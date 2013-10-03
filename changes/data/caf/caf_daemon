@@ -4,8 +4,14 @@ ESSID='T-Mobile-Parrot1'
 #The gateway address of your wlan
 GATEWAY=192.168.0.1
 
+#The ntp server to sync the clock
+NTP_SERVER='0.US.pool.ntp.org'
+
 #The contents of /etc/resolv.conf
 DNS='nameserver 192.168.0.1'
+
+#Whether to check Internet connectivity (0 for no check)
+ENABLE_NETWORK_CHECK=1
 
 # Root directory for the application
 CAF_HOME=/data/caf/
