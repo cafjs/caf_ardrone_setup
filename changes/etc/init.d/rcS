@@ -16,7 +16,7 @@ echo init started...
 
 #don't allow overcommit (allocate more memory that the physical one)
 echo 2 > /proc/sys/vm/overcommit_memory
-echo 120 > /proc/sys/vm/overcommit_ratio
+echo 200 > /proc/sys/vm/overcommit_ratio
 
 #in case of unaligned access print a message and send a SIGBUS
 echo 5 > /proc/cpu/alignment
