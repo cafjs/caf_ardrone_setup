@@ -39,7 +39,8 @@ echo "Starting up with URL " ${CAF_APP_URL}
 if [ -d ${CAF_APP_REPO_DIR} ]
 then
     cd ${CAF_APP_REPO_DIR}
-    command="/data/caf/bin/node --expose_gc ${CAF_HOME}/${CAF_APP_REPO_DIR}/start.js --url ${CAF_APP_URL}"
+    rm -f /data/caf/output.log
+    command="/data/caf/bin/node --expose_gc ${CAF_HOME}/${CAF_APP_REPO_DIR}/start.js --url ${CAF_APP_URL} >> /data/caf/output.log"
     /data/caf/bin/mon  "${command}"
 else
     echo "Error: app not installed"
