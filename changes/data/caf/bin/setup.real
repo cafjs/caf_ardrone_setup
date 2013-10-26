@@ -40,7 +40,16 @@ if [ -d ${CAF_APP_REPO_DIR} ]
 then
     cd ${CAF_APP_REPO_DIR}
     rm -f /data/caf/output.log
-    command="/data/caf/bin/node --expose_gc ${CAF_HOME}/${CAF_APP_REPO_DIR}/start.js --url ${CAF_APP_URL} >> /data/caf/output.log"
+    command1="/data/caf/bin/node --expose_gc ${CAF_HOME}/${CAF_APP_REPO_DIR}/start.js --url ${CAF_APP_URL}"
+
+    if [ -z ${CAF_HTTP_PROXY} ]
+    then
+        command2=" "
+    else
+        command2=" --proxy ${CAF_HTTP_PROXY} "
+    fi
+    command3= ">> /data/caf/output.log"
+    command=$command1$command2$command3
     /data/caf/bin/mon  "${command}"
 else
     echo "Error: app not installed"

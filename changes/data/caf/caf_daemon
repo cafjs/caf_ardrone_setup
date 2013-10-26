@@ -22,6 +22,8 @@ CAF_APP_REPO_DIR=application
 # URL for the CA representing this device/app
 CAF_APP_URL=http://hellodrone.cafjs.com/iot/xxxx
 
+# URL for an optional http proxy
+CAF_HTTP_PROXY=
 
 # Directory with optional config file (caf_daemon) to override defaults
 CAF_CONFIG_DIR=/data/video
