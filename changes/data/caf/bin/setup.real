@@ -8,10 +8,10 @@ NAME=${NAME:-caf_daemon}
 # Read config overrides from CAF_CONFIG_DIR
 [ -r ${CAF_CONFIG_DIR}/${NAME} ] && . ${CAF_CONFIG_DIR}/${NAME}
 
-sleep 20
+sleep 10
 /sbin/ifconfig ath0 0.0.0.0
 /sbin/iwconfig ath0 essid ${ESSID} && /bin/wpa_supplicant -B -Dwext -iath0 -c/etc/wpa_supplicant.conf
-wait 10
+sleep 5
 /sbin/udhcpc -i ath0
 /sbin/route add default gw ${GATEWAY} ath0
 /bin/rm -f /etc/resolv.conf
@@ -31,6 +31,16 @@ while [ $NOTDONE -gt 0 ]; do
     fi
 done
 
+if [ -z ${CAF_WIFI_FIFO} ]
+then
+    echo "Wifi beacon streaming disabled"
+else
+    sleep 5
+    /data/caf/bin/airmon-ng start wlan0 ${CAF_WIFI_BEACON_CHANNEL}
+    mkfifo ${CAF_WIFI_FIFO_LOC}
+    command="/data/caf/bin/tcpdump -tt -i mon0 -s 0  -nne 'wlan type mgt subtype beacon' > ${CAF_WIFI_FIFO_LOC}" 
+    /data/caf/bin/mon  "${command}" &
+fi
 
 cd ${CAF_HOME}
 
@@ -52,7 +62,7 @@ then
     then
         command3=" "
     else
-        command3=" --wifiFIFO ${CAF_WIFI_FIFO} "
+        command3=" --wifiFIFO ${CAF_WIFI_FIFO_LOC} "
     fi
     command4=">> /data/caf/output.log"
     command=$command1$command2$command3$command4
@@ -61,5 +71,3 @@ else
     echo "Error: app not installed"
     exit 1
 fi
-
-
