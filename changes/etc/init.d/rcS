@@ -110,8 +110,18 @@ i2c_cmd 0x48 0x19 0x02
 /bin/check_update.sh
 
 
-
+#gps modules
 insmod /lib/modules/2.6.32.9-gbb4d210/kernel/drivers/usb/usbserial.ko
 insmod /lib/modules/2.6.32.9-gbb4d210/kernel/drivers/usb/pl2303.ko
+#wifi dongle d-link dwl-g122 hardware version B1 (ralink)
+insmod /data/caf/modules/arc4.ko
+insmod /data/caf/modules/cfg80211.ko
+insmod /data/caf/modules/crc-itu-t.ko
+insmod /data/caf/modules/firmware_class.ko
+insmod /data/caf/modules/mac80211.ko
+insmod /data/caf/modules/rt2x00lib.ko
+insmod /data/caf/modules/rt2x00usb.ko
+insmod /data/caf/modules/rt2500usb.ko
+
 
 echo end init...

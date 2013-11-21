@@ -48,8 +48,14 @@ then
     else
         command2=" --proxy ${CAF_HTTP_PROXY} "
     fi
-    command3=">> /data/caf/output.log"
-    command=$command1$command2$command3
+    if [ -z ${CAF_WIFI_FIFO} ]
+    then
+        command3=" "
+    else
+        command3=" --wifiFIFO ${CAF_WIFI_FIFO} "
+    fi
+    command4=">> /data/caf/output.log"
+    command=$command1$command2$command3$command4
     /data/caf/bin/mon  "${command}"
 else
     echo "Error: app not installed"

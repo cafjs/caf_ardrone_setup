@@ -7,6 +7,8 @@ ESSID=${ESSID:-'T-Mobile-Parrot1'}
 
 WIFI_PASS=${WIFI_PASS:-'pleasechange'}
 
+WPA_SUPPLICANT_CONF=${WPA_SUPPLICANT_CONF:-'/tmp/wpa_supplicant.conf'}
+
 CAF_HOME_REL=${CAF_HOME_REL:-'data/caf'}
 
 CAF_APP_REPO_DIR=${CAF_APP_REPO_DIR:-'application'}
@@ -17,6 +19,8 @@ cd /tmp/changes/
 
 # first wlan
 wpa_passphrase $ESSID $WIFI_PASS > etc/wpa_supplicant.conf
+touch ${WPA_SUPPLICANT_CONF}
+cat ${WPA_SUPPLICANT_CONF} >> etc/wpa_supplicant.conf
 
 #Second app with no soft-links (created by `npm link`)
 rm -fr /tmp/${CAF_APP_REPO_DIR}

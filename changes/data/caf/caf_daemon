@@ -27,3 +27,9 @@ CAF_HTTP_PROXY=
 
 # Directory with optional config file (caf_daemon) to override defaults
 CAF_CONFIG_DIR=/data/video
+
+#fifo for tcpdump to communicate data to the app
+CAF_WIFI_FIFO_LOC=/tmp/wifiFIFO
+
+#default channel for all location access points
+CAF_WIFI_BEACON_CHANNEL=6

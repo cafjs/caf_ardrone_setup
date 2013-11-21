@@ -1,0 +1,2 @@
+SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", KERNELS=="1-1", ACTION=="add", ATTRS{idVendor}=="2001", ATTRS{idProduct}=="3c00", RUN+="/data/caf/bin/setup_extra_wifi"
+

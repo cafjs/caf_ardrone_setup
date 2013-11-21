@@ -1,0 +1,18 @@
+#!/bin/ash
+NAME=${NAME:-caf_daemon}
+
+# Read configuration variable file if it is present
+[ -r /data/caf/${NAME} ] && . /data/caf/${NAME}
+
+
+# Read config overrides from CAF_CONFIG_DIR
+[ -r ${CAF_CONFIG_DIR}/${NAME} ] && . ${CAF_CONFIG_DIR}/${NAME}
+
+sleep 5
+/data/caf/bin/airmon-ng start wlan0 ${CAF_WIFI_BEACON_CHANNEL}
+mkfifo ${CAF_WIFI_FIFO_LOC}
+command="/data/caf/bin/tcpdump -tt -i mon0 -s 0  -nne 'wlan type mgt subtype beacon' > ${CAF_WIFI_FIFO_LOC}" 
+/data/caf/bin/mon  "${command}"
+export CAF_WIFI_FIFO=${CAF_WIFI_FIFO_LOC}
+
+/data/caf/bin/setup.real 

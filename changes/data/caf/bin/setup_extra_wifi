@@ -1,0 +1,6 @@
+#!/bin/ash
+cd /tmp 
+foo=`mktemp`; 
+echo `env` > $foo
+ln -s $foo ./setupwireless.lock  && /data/caf/bin/setup_extra_wifi.real &
+
